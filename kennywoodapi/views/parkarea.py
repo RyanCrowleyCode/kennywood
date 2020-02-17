@@ -52,3 +52,22 @@ class ParkAreas(ViewSet):
             context={'request': request}
         )
         return Response(serializer.data)
+
+    # POST one
+    def create(self, request):
+        """Handle POST operations
+
+        Returns:
+            Reponse -- JSON serialized ParkArea instance
+        """
+        newarea = ParkArea()
+        newarea = request.data["name"]
+        newarea.theme = request.data["theme"]
+        newarea.save()
+
+        serializer = ParkAreaSerializer(
+            newarea,
+            context={'request': request}
+        )
+
+        return Response(serializer.data)
