@@ -36,6 +36,7 @@ class ParkAreas(ViewSet):
                 area, 
                 context={'request': request}
                 )
+            return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
 
